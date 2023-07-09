@@ -13,7 +13,7 @@ def main():
     application = ApplicationBuilder().token(token).build()
     
     start_handler = CommandHandler('start', start_func)
-    jenis_handler = MessageHandler(filters.TEXT & (~filters.COMMAND), jenis_func)
+    # exit_handler = CommandHandler('end', exitt)
     main_handler = ConversationHandler(
         entry_points=[CommandHandler('mulai', mulai_func)],
         states={
@@ -21,6 +21,7 @@ def main():
             
             JENIS_WARUNG: [MessageHandler(filters.TEXT & ~filters.COMMAND, jenis_warung_func)],
             JENIS_MINIMARKET: [MessageHandler(filters.TEXT & ~filters.COMMAND, jenis_minimarket_func)],
+            JENIS_PUJASERA: [MessageHandler(filters.TEXT & ~filters.COMMAND, jenis_pujasera_func)],
             JENIS_BENGKEL: [MessageHandler(filters.TEXT & ~filters.COMMAND, jenis_bengkel_func)],
             JENIS_DEALER: [MessageHandler(filters.TEXT & ~filters.COMMAND, jenis_dealer_func)],
             JENIS_BARBER: [MessageHandler(filters.TEXT & ~filters.COMMAND, jenis_barber_func)],
@@ -41,14 +42,14 @@ def main():
             LAUNDRY_1: [MessageHandler(filters.TEXT & ~filters.COMMAND, laundry_1_func)],
             LAUNDRY_2: [MessageHandler(filters.TEXT & ~filters.COMMAND, laundry_2_func)],
             GADGET_1: [MessageHandler(filters.TEXT & ~filters.COMMAND, gadget_1_func)],
-            GADGET_2: [MessageHandler(filters.TEXT & ~filters.COMMAND, gadget_2_func)]
+            GADGET_2: [MessageHandler(filters.TEXT & ~filters.COMMAND, gadget_2_func)],
         },
         fallbacks=[start_handler]
     )
 
     application.add_handler(start_handler)
     application.add_handler(main_handler)
-    application.add_handler(jenis_handler)    
+    # application.add_handler(exit_handler)    
 
     application.run_polling()
 

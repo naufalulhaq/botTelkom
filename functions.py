@@ -23,7 +23,7 @@ async def mulai_func(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(question)
     return FIRST_QUESTION
 
-async def jenis_func(update, context):
+async def jenis_func(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_answer = update.message.text.strip()
     if user_answer.isdigit():
         number = int(user_answer)
@@ -97,9 +97,12 @@ async def jenis_func(update, context):
                 await update.message.reply_text("Tidak ada pilihan pada nomor tersebut.")
         else:
             await update.message.reply_text("Tidak ada pilihan pada nomor tersebut.")
+            return FIRST_QUESTION
+    elif user_answer == 'exit':
+        await exit_func(update, context)
     else:
         await update.message.reply_text("Silahkan pilih nomor sesuai dengan pilihan yang disediakan.")
-    return ConversationHandler.END
+        return FIRST_QUESTION
 
 # WARUNG
 async def jenis_warung_func(update, context):
@@ -124,9 +127,10 @@ async def jenis_warung_func(update, context):
                 return WARUNG_2
         else:
             await update.message.reply_text("Tidak ada pilihan pada nomor tersebut.")
+            return JENIS_WARUNG
     else:
         await update.message.reply_text("Silahkan pilih nomor sesuai dengan pilihan yang disediakan.")
-    return ConversationHandler.END
+        return JENIS_WARUNG
 
 async def warung_1_func(update, context):
     user_answer = update.message.text.strip()
@@ -135,22 +139,22 @@ async def warung_1_func(update, context):
         if number >= 1 and number <= 4:
             if number == 1:
                 await solution_hsi(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 2:
                 await solution_indibiz_cam(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 3:
                 await solution_indibiz_pay(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 4:
                 await solution_indibiz_kasir(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
         else:
             await update.message.reply_text("Tidak ada pilihan pada nomor tersebut.")
-            return END_QUESTION
+            return WARUNG_1
     else:
         await update.message.reply_text("Silahkan pilih nomor sesuai dengan pilihan yang disediakan.")
-    return ConversationHandler.END
+        return WARUNG_1
 
 async def warung_2_func(update, context):
     user_answer = update.message.text.strip()
@@ -159,19 +163,19 @@ async def warung_2_func(update, context):
         if number >= 1 and number <= 3:
             if number == 1:
                 await solution_hsi(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 2:
                 await solution_indibiz_pay(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 3:
                 await solution_indibiz_pay(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
         else:
             await update.message.reply_text("Tidak ada pilihan pada nomor tersebut.")
-            return END_QUESTION
+            return WARUNG_2
     else:
         await update.message.reply_text("Silahkan pilih nomor sesuai dengan pilihan yang disediakan.")
-    return ConversationHandler.END
+        return WARUNG_2
 
 # MINIMARKET
 async def jenis_minimarket_func(update, context):
@@ -181,33 +185,34 @@ async def jenis_minimarket_func(update, context):
         if number >= 1 and number <= 8:
             if number == 1:
                 await solution_astinet(update, context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 2:
                 await solution_finpay( update, context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 3:
                 await solution_flou( update, context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 4:
                 await solution_dms( update, context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 5:
                 await solution_indibiz_cam( update, context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 6:
                 await solution_indibiz_pay( update, context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 7:
                 await solution_indibiz_kasir( update, context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 8:
                 await solution_oca( update, context)
-                return END_QUESTION
+                return ConversationHandler.END
         else:
             await update.message.reply_text("Tidak ada pilihan pada nomor tersebut.")
+            return JENIS_MINIMARKET
     else:
         await update.message.reply_text("Silahkan pilih nomor sesuai dengan pilihan yang disediakan.")
-    return ConversationHandler.END
+        return JENIS_MINIMARKET
 
 # PUJASERA
 async def jenis_pujasera_func(update, context):
@@ -233,9 +238,10 @@ async def jenis_pujasera_func(update, context):
                 return PUJASERA_2
         else:
             await update.message.reply_text("Tidak ada pilihan pada nomor tersebut.")
+            return JENIS_PUJASERA
     else:
         await update.message.reply_text("Silahkan pilih nomor sesuai dengan pilihan yang disediakan.")
-    return ConversationHandler.END
+        return JENIS_PUJASERA
 
 async def pujasera_1_func(update, context):
     user_answer = update.message.text.strip()
@@ -244,22 +250,22 @@ async def pujasera_1_func(update, context):
         if number >= 1 and number <= 4:
             if number == 1:
                 await solution_hsi(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 2:
                 await solution_indibiz_cam(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 3:
                 await solution_indibiz_pay(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 4:
                 await solution_indibiz_kasir(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
         else:
             await update.message.reply_text("Tidak ada pilihan pada nomor tersebut.")
-            return END_QUESTION
+            return PUJASERA_1
     else:
         await update.message.reply_text("Silahkan pilih nomor sesuai dengan pilihan yang disediakan.")
-    return ConversationHandler.END
+        return PUJASERA_1
 
 async def pujasera_2_func(update, context):
     user_answer = update.message.text.strip()
@@ -268,22 +274,22 @@ async def pujasera_2_func(update, context):
         if number >= 1 and number <= 4:
             if number == 1:
                 await solution_hsi(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 2:
                 await solution_indibiz_cam(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 3:
                 await solution_indibiz_pay(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 4:
                 await solution_indibiz_kasir(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
         else:
             await update.message.reply_text("Tidak ada pilihan pada nomor tersebut.")
-            return END_QUESTION
+            return PUJASERA_2
     else:
         await update.message.reply_text("Silahkan pilih nomor sesuai dengan pilihan yang disediakan.")
-    return ConversationHandler.END
+        return PUJASERA_2
 
 # BENGKEL
 async def jenis_bengkel_func(update, context):
@@ -313,9 +319,10 @@ async def jenis_bengkel_func(update, context):
                 return BENGKEL_2
         else:
             await update.message.reply_text("Tidak ada pilihan pada nomor tersebut.")
+            return JENIS_BENGKEL
     else:
         await update.message.reply_text("Silahkan pilih nomor sesuai dengan pilihan yang disediakan.")
-    return ConversationHandler.END
+        return JENIS_BENGKEL
 
 async def bengkel_1_func(update, context):
     user_answer = update.message.text.strip()
@@ -324,31 +331,31 @@ async def bengkel_1_func(update, context):
         if number >= 1 and number <= 7:
             if number == 1:
                 await solution_astinet(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 2:
                 await solution_metro(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 3:
                 await solution_wms(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 4:
                 await solution_netmonk(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 5:
                 await solution_erp(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 6:
                 await solution_indibiz_cam(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 7:
                 await solution_oca(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
         else:
             await update.message.reply_text("Tidak ada pilihan pada nomor tersebut.")
-            return END_QUESTION
+            return BENGKEL_1
     else:
         await update.message.reply_text("Silahkan pilih nomor sesuai dengan pilihan yang disediakan.")
-    return ConversationHandler.END
+        return BENGKEL_1
 
 async def bengkel_2_func(update, context):
     user_answer = update.message.text.strip()
@@ -357,22 +364,22 @@ async def bengkel_2_func(update, context):
         if number >= 1 and number <= 4:
             if number == 1:
                 await solution_hsi(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 2:
                 await solution_indibiz_wifi(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 3:
                 await solution_indibiz_cam(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 4:
                 await solution_indibiz_pay(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
         else:
             await update.message.reply_text("Tidak ada pilihan pada nomor tersebut.")
-            return END_QUESTION
+            return BENGKEL_2
     else:
         await update.message.reply_text("Silahkan pilih nomor sesuai dengan pilihan yang disediakan.")
-    return ConversationHandler.END
+        return BENGKEL_2
 
 # DEALER
 async def jenis_dealer_func(update, context):
@@ -382,27 +389,28 @@ async def jenis_dealer_func(update, context):
         if number >= 1 and number <= 8:
             if number == 1:
                 await solution_astinet(update, context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 2:
                 await solution_metro( update, context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 3:
                 await solution_netmonk( update, context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 4:
                 await solution_finpay( update, context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 5:
                 await solution_indibiz_cam( update, context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 6:
                 await solution_oca( update, context)
-                return END_QUESTION
+                return ConversationHandler.END
         else:
             await update.message.reply_text("Tidak ada pilihan pada nomor tersebut.")
+            return JENIS_DEALER
     else:
         await update.message.reply_text("Silahkan pilih nomor sesuai dengan pilihan yang disediakan.")
-    return ConversationHandler.END
+        return JENIS_DEALER
 
 # BARBER
 async def jenis_barber_func(update, context):
@@ -428,9 +436,10 @@ async def jenis_barber_func(update, context):
                 return BARBER_2
         else:
             await update.message.reply_text("Tidak ada pilihan pada nomor tersebut.")
+            return JENIS_BARBER
     else:
         await update.message.reply_text("Silahkan pilih nomor sesuai dengan pilihan yang disediakan.")
-    return ConversationHandler.END
+        return JENIS_BARBER
 
 async def barber_1_func(update, context):
     user_answer = update.message.text.strip()
@@ -439,25 +448,25 @@ async def barber_1_func(update, context):
         if number >= 1 and number <= 5:
             if number == 1:
                 await solution_astinet(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 2:
                 await solution_hsi(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 3:
                 await solution_indibiz_cam(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 4:
                 await solution_indibiz_kasir(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 5:
                 await solution_oca(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
         else:
             await update.message.reply_text("Tidak ada pilihan pada nomor tersebut.")
-            return END_QUESTION
+            return BARBER_1
     else:
         await update.message.reply_text("Silahkan pilih nomor sesuai dengan pilihan yang disediakan.")
-    return ConversationHandler.END
+        return BARBER_1
 
 async def barber_2_func(update, context):
     user_answer = update.message.text.strip()
@@ -466,19 +475,19 @@ async def barber_2_func(update, context):
         if number >= 1 and number <= 3:
             if number == 1:
                 await solution_wms(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 2:
                 await solution_indibiz_pay(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 3:
                 await solution_indibiz_kasir(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
         else:
             await update.message.reply_text("Tidak ada pilihan pada nomor tersebut.")
-            return END_QUESTION
+            return BARBER_2
     else:
         await update.message.reply_text("Silahkan pilih nomor sesuai dengan pilihan yang disediakan.")
-    return ConversationHandler.END
+        return BARBER_2
 
 # FASHION
 async def jenis_fashion_func(update, context):
@@ -504,9 +513,10 @@ async def jenis_fashion_func(update, context):
                 return BARBER_2
         else:
             await update.message.reply_text("Tidak ada pilihan pada nomor tersebut.")
+            return JENIS_FASHION
     else:
         await update.message.reply_text("Silahkan pilih nomor sesuai dengan pilihan yang disediakan.")
-    return ConversationHandler.END
+        return JENIS_FASHION
 
 async def fashion_1_func(update, context):
     user_answer = update.message.text.strip()
@@ -515,22 +525,22 @@ async def fashion_1_func(update, context):
         if number >= 1 and number <= 4:
             if number == 1:
                 await solution_hsi(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 2:
                 await solution_finpay(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 3:
                 await solution_indibiz_cam(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 4:
                 await solution_indibiz_kasir(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
         else:
             await update.message.reply_text("Tidak ada pilihan pada nomor tersebut.")
-            return END_QUESTION
+            return FASHION_1
     else:
         await update.message.reply_text("Silahkan pilih nomor sesuai dengan pilihan yang disediakan.")
-    return ConversationHandler.END
+        return FASHION_1
 
 async def fashion_2_func(update, context):
     user_answer = update.message.text.strip()
@@ -539,22 +549,22 @@ async def fashion_2_func(update, context):
         if number >= 1 and number <= 4:
             if number == 1:
                 await solution_hsi(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 2:
                 await solution_indibiz_cam(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 3:
                 await solution_indibiz_pay(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 4:
                 await solution_indibiz_kasir(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
         else:
             await update.message.reply_text("Tidak ada pilihan pada nomor tersebut.")
-            return END_QUESTION
+            return FASHION_2
     else:
         await update.message.reply_text("Silahkan pilih nomor sesuai dengan pilihan yang disediakan.")
-    return ConversationHandler.END
+        return FASHION_2
 
 # LAUNDRY
 async def jenis_laundry_func(update, context):
@@ -569,7 +579,7 @@ async def jenis_laundry_func(update, context):
                    "3. Ingin memiliki metode pembayaran yang universal melalui QRIS generator serta fitur untuk mencetak struk\n" \
                    "4. Membutuhkan sistem POS simple"
                 await update.message.reply_text(question)
-                return BARBER_1
+                return LAUNDRY_1
             elif number == 2:
                 question = "Usaha fashion/boutique anda tidak memiliki cabang. Apa keluhan usaha anda?\n\n" \
                    "1. Membutuhkan internet untuk operasional toko\n" \
@@ -577,9 +587,10 @@ async def jenis_laundry_func(update, context):
                    "3. Membutuhkan sistem POS simple\n" \
                    "4. Membutuhkan  WA blast untuk menginfokan promo ke para pelanggannya"
                 await update.message.reply_text(question)
-                return BARBER_2
+                return LAUNDRY_2
         else:
             await update.message.reply_text("Tidak ada pilihan pada nomor tersebut.")
+            return JENIS_LAUNDRY
     else:
         await update.message.reply_text("Silahkan pilih nomor sesuai dengan pilihan yang disediakan.")
     return ConversationHandler.END
@@ -591,22 +602,22 @@ async def laundry_1_func(update, context):
         if number >= 1 and number <= 4:
             if number == 1:
                 await solution_hsi(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 2:
                 await solution_indibiz_cam(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 3:
                 await solution_indibiz_pay(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 4:
                 await solution_indibiz_pay(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
         else:
             await update.message.reply_text("Tidak ada pilihan pada nomor tersebut.")
-            return END_QUESTION
+            return LAUNDRY_1
     else:
         await update.message.reply_text("Silahkan pilih nomor sesuai dengan pilihan yang disediakan.")
-    return ConversationHandler.END
+        return LAUNDRY_1
 
 async def laundry_2_func(update, context):
     user_answer = update.message.text.strip()
@@ -615,22 +626,22 @@ async def laundry_2_func(update, context):
         if number >= 1 and number <= 4:
             if number == 1:
                 await solution_hsi(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 2:
                 await solution_indibiz_pay(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 3:
                 await solution_indibiz_pay(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 4:
                 await solution_oca(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
         else:
             await update.message.reply_text("Tidak ada pilihan pada nomor tersebut.")
-            return END_QUESTION
+            return LAUNDRY_2
     else:
         await update.message.reply_text("Silahkan pilih nomor sesuai dengan pilihan yang disediakan.")
-    return ConversationHandler.END
+        return LAUNDRY_2
 
 # GADGET
 async def jenis_gadget_func(update, context):
@@ -639,26 +650,27 @@ async def jenis_gadget_func(update, context):
         number = int(user_answer)
         if number >= 1 and number <= 2:
             if number == 1:
-                question = "Usaha fashion/boutique anda memiliki beberapa cabang. Apa keluhan usaha anda?\n\n" \
+                question = "Usaha Gadget & Elektronik anda memiliki beberapa cabang. Apa keluhan usaha anda?\n\n" \
                    "1. Membutuhkan internet untuk operasional toko\n" \
                    "2. Membutuhkan monitoring untuk menjaga keamanan lokasi toko\n" \
                    "3. Ingin memiliki metode pembayaran yang universal melalui QRIS generator\n" \
                    "4. Membutuhkan sistem pembayaran dan kasir sederhana (untuk pencatatan transaksi, reporting, dll)"
                 await update.message.reply_text(question)
-                return BARBER_1
+                return GADGET_1
             elif number == 2:
-                question = "Usaha fashion/boutique anda tidak memiliki cabang. Apa keluhan usaha anda?\n\n" \
+                question = "Usaha Gadget & Elektronik anda tidak memiliki cabang. Apa keluhan usaha anda?\n\n" \
                    "1. Membutuhkan internet untuk operasional toko\n" \
                    "2. Membutuhkan monitoring untuk menjaga keamanan lokasi toko\n" \
                    "3. Membutuhkan sistem pembayaran dan kasir sederhana (untuk pencatatan transaksi, reporting, dll)\n" \
                    "4. Ingin memiliki metode pembayaran yang universal melalui QRIS generator"
                 await update.message.reply_text(question)
-                return BARBER_2
+                return GADGET_2
         else:
             await update.message.reply_text("Tidak ada pilihan pada nomor tersebut.")
+            JENIS_GADGET
     else:
         await update.message.reply_text("Silahkan pilih nomor sesuai dengan pilihan yang disediakan.")
-    return ConversationHandler.END
+        return JENIS_GADGET
 
 async def gadget_1_func(update, context):
     user_answer = update.message.text.strip()
@@ -667,22 +679,22 @@ async def gadget_1_func(update, context):
         if number >= 1 and number <= 4:
             if number == 1:
                 await solution_hsi(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 2:
                 await solution_indibiz_cam(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 3:
                 await solution_indibiz_pay(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 4:
                 await solution_indibiz_pay(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
         else:
             await update.message.reply_text("Tidak ada pilihan pada nomor tersebut.")
-            return END_QUESTION
+            return GADGET_1
     else:
         await update.message.reply_text("Silahkan pilih nomor sesuai dengan pilihan yang disediakan.")
-    return ConversationHandler.END
+        return GADGET_1
 
 async def gadget_2_func(update, context):
     user_answer = update.message.text.strip()
@@ -691,93 +703,127 @@ async def gadget_2_func(update, context):
         if number >= 1 and number <= 4:
             if number == 1:
                 await solution_hsi(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 2:
                 await solution_indibiz_cam(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 3:
                 await solution_indibiz_cam(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
             elif number == 4:
                 await solution_indibiz_pay(update=update, context=context)
-                return END_QUESTION
+                return ConversationHandler.END
         else:
             await update.message.reply_text("Tidak ada pilihan pada nomor tersebut.")
-            return END_QUESTION
+            return GADGET_2
     else:
         await update.message.reply_text("Silahkan pilih nomor sesuai dengan pilihan yang disediakan.")
-    return ConversationHandler.END
+        return GADGET_2
 
 ## SOLUTIONS
 # DIGITAL CONNECTIVITY
 async def solution_hsi(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_chat.id
-    text = "Berdasarkan profil usaha serta keluhan anda, anda dapat menggunakan produk HSI/Indibiz"
+    text = "Berdasarkan profil usaha serta keluhan anda, anda dapat menggunakan produk HSI/Indibiz\n"\
+            "Ketahui lebih lanjut mengenai produk HSI/Indibiz pada https://myindibiz.co.id/produk/indibiz-internet"
     await context.bot.send_message(chat_id=user_id, text=text)
+    await exit_func(update, context)
 
 async def solution_astinet(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_chat.id
-    text = "Berdasarkan profil usaha serta keluhan anda, anda dapat menggunakan produk Astinet"
+    text = "Berdasarkan profil usaha serta keluhan anda, anda dapat menggunakan produk Astinet\n"\
+            "Ketahui lebih lanjut mengenai produk Astinet pada https://mycarrier.telkom.co.id/id/astinet"
     await context.bot.send_message(chat_id=user_id, text=text)
+    await exit_func(update, context)
 
 async def solution_netmonk(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_chat.id
-    text = "Berdasarkan profil usaha serta keluhan anda, anda dapat menggunakan produk Netmonk"
+    text = "Berdasarkan profil usaha serta keluhan anda, anda dapat menggunakan produk Netmonk\n"\
+            "Ketahui lebih lanjut mengenai produk Netmonk pada https://netmonk.id/"
     await context.bot.send_message(chat_id=user_id, text=text)
+    await exit_func(update, context)
 
 async def solution_wms(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_chat.id
-    text = "Berdasarkan profil usaha serta keluhan anda, anda dapat menggunakan produk WMS/Indibiz Wifi"
+    text = "Berdasarkan profil usaha serta keluhan anda, anda dapat menggunakan produk WMS\n"\
+            "Ketahui lebih lanjut mengenai produk WMS pada https://wifi.id/bisnis"
     await context.bot.send_message(chat_id=user_id, text=text)
+    await exit_func(update, context)
 
 async def solution_metro(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_chat.id
-    text = "Berdasarkan profil usaha serta keluhan anda, anda dapat menggunakan produk Metro E"
+    text = "Berdasarkan profil usaha serta keluhan anda, anda dapat menggunakan produk Metro E\n"\
+            "Ketahui lebih lanjut mengenai produk Metro E pada https://mycarrier.telkom.co.id/id/metro-ethernet"
     await context.bot.send_message(chat_id=user_id, text=text)
+    await exit_func(update, context)
 
 async def solution_indibiz_wifi(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_chat.id
-    text = "Berdasarkan profil usaha serta keluhan anda, anda dapat menggunakan produk Indibiz Wifi"
+    text = "Berdasarkan profil usaha serta keluhan anda, anda dapat menggunakan produk Indibiz Wifi\n"\
+            "Ketahui lebih lanjut mengenai produk Indibiz Wifi pada https://myindibiz.co.id/produk/indibiz-voucher-wifi"
     await context.bot.send_message(chat_id=user_id, text=text)
+    await exit_func(update, context)
 
 # DIGITAL PLATFORM
 async def solution_finpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_chat.id
-    text = "Berdasarkan profil usaha serta keluhan anda, anda dapat menggunakan produk Finpay"
+    text = "Berdasarkan profil usaha serta keluhan anda, anda dapat menggunakan produk Finpay\n"\
+           "Ketahui lebih lanjut mengenai produk Finpay pada https://finpay.id/"
     await context.bot.send_message(chat_id=user_id, text=text)
+    await exit_func(update, context)
 
 async def solution_flou(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_chat.id
-    text = "Berdasarkan profil usaha serta keluhan anda, anda dapat menggunakan produk Flou"
+    text = "Berdasarkan profil usaha serta keluhan anda, anda dapat menggunakan produk Flou\n" \
+           "Ketahui lebih lanjut mengenai produk Flou pada https://floucloud.id/"
     await context.bot.send_message(chat_id=user_id, text=text)
+    await exit_func(update, context)
 
 async def solution_erp(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_chat.id
-    text = "Berdasarkan profil usaha serta keluhan anda, anda dapat menggunakan produk ERP"
+    text = "Berdasarkan profil usaha serta keluhan anda, anda dapat menggunakan produk ERP\n"\
+            "Ketahui lebih lanjut mengenai produk ERP pada https://telkom.co.id/sites/enterprise/id_ID/page/enterprise-resource-planning-288"
     await context.bot.send_message(chat_id=user_id, text=text)
+    await exit_func(update, context)
 
 async def solution_dms(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_chat.id
-    text = "Berdasarkan profil usaha serta keluhan anda, anda dapat menggunakan produk DMS"
+    text = "Berdasarkan profil usaha serta keluhan anda, anda dapat menggunakan produk DMS\n"\
+            "Ketahui lebih lanjut mengenai produk DMS pada https://www.telkom.co.id/sites/enterprise/id_ID/page/digital-media-communication-solution-821"
     await context.bot.send_message(chat_id=user_id, text=text)
+    await exit_func(update, context)
 
 # DIGITAL SERVICE
 async def solution_indibiz_cam(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_chat.id
-    text = "Berdasarkan profil usaha serta keluhan anda, anda dapat menggunakan produk Indibiz Cam"
+    text = "Berdasarkan profil usaha serta keluhan anda, anda dapat menggunakan produk Indibiz Cam\n"\
+           "Ketahui lebih lanjut mengenai produk Indibiz Cam pada https://myindibiz.co.id/produk/ip-camera"
     await context.bot.send_message(chat_id=user_id, text=text)
+    await exit_func(update, context)
 
 async def solution_indibiz_pay(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_chat.id
-    text = "Berdasarkan profil usaha serta keluhan anda, anda dapat menggunakan produk Indibiz Pay"
+    text = "Berdasarkan profil usaha serta keluhan anda, anda dapat menggunakan produk Indibiz Pay\n"\
+            "Ketahui lebih lanjut mengenai produk Indibiz Pay pada https://www.indibizpay.id/"
     await context.bot.send_message(chat_id=user_id, text=text)
+    await exit_func(update, context)
 
 async def solution_indibiz_kasir(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_chat.id
-    text = "Berdasarkan profil usaha serta keluhan anda, anda dapat menggunakan produk Indibiz Kasir"
+    text = "Berdasarkan profil usaha serta keluhan anda, anda dapat menggunakan produk Indibiz Kasir\n"\
+            "Ketahui lebih lanjut mengenai produk Indibiz Kasir pada https://myindibiz.co.id/produk/indibiz-kasir"
     await context.bot.send_message(chat_id=user_id, text=text)
+    await exit_func(update, context)
 
 async def solution_oca(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_chat.id
-    text = "Berdasarkan profil usaha serta keluhan anda, anda dapat menggunakan produk OCA"
+    text = "Berdasarkan profil usaha serta keluhan anda, anda dapat menggunakan produk OCA\n"\
+            "Ketahui lebih lanjut mengenai produk OCA pada https://www.instagram.com/oca.indonesia/"
     await context.bot.send_message(chat_id=user_id, text=text)
+    await exit_func(update, context)
+
+# EXIT
+async def exit_func(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = "Terimakasih sudah menggunakan Telkom SDA SME IS Bot.\n\n"\
+            "klik /start untuk memulai kembali!"
+    await update.message.reply_text(text)
