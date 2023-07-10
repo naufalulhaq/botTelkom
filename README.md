@@ -1,4 +1,4 @@
-# Telkom Bot by ITS Magangers
+# Telkom Bot by Mahasiswa Magang ITS
 
 ## How to run?
 - make a virtual environment  
