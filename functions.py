@@ -98,7 +98,7 @@ async def jenis_func(update: Update, context: ContextTypes.DEFAULT_TYPE):
         else:
             await update.message.reply_text("Tidak ada pilihan pada nomor tersebut.")
             return FIRST_QUESTION
-    elif user_answer == 'exit':
+    elif user_answer.lower() == 'exit':
         await exit_func(update, context)
     else:
         await update.message.reply_text("Silahkan pilih nomor sesuai dengan pilihan yang disediakan.")
@@ -573,7 +573,7 @@ async def jenis_laundry_func(update, context):
         number = int(user_answer)
         if number >= 1 and number <= 2:
             if number == 1:
-                question = "Usaha fashion/boutique anda memiliki beberapa cabang. Apa keluhan usaha anda?\n\n" \
+                question = "Usaha laundry anda memiliki beberapa cabang. Apa keluhan usaha anda?\n\n" \
                    "1. Membutuhkan internet untuk operasional toko yang dapat dimonitor\n" \
                    "2. Membutuhkan monitoring keamanan lokasi toko\n" \
                    "3. Ingin memiliki metode pembayaran yang universal melalui QRIS generator serta fitur untuk mencetak struk\n" \
@@ -581,7 +581,7 @@ async def jenis_laundry_func(update, context):
                 await update.message.reply_text(question)
                 return LAUNDRY_1
             elif number == 2:
-                question = "Usaha fashion/boutique anda tidak memiliki cabang. Apa keluhan usaha anda?\n\n" \
+                question = "Usaha laundry anda tidak memiliki cabang. Apa keluhan usaha anda?\n\n" \
                    "1. Membutuhkan internet untuk operasional toko\n" \
                    "2. Ingin memiliki metode pembayaran yang universal melalui QRIS generator\n" \
                    "3. Membutuhkan sistem POS simple\n" \
