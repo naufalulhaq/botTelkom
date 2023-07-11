@@ -502,7 +502,7 @@ async def jenis_fashion_func(update, context):
                    "3. Membutuhkan monitoring keamanan lokasi\n" \
                    "4. Membutuhkan sistem kasir yang lebih advance (hingga ke fitur table management)"
                 await update.message.reply_text(question)
-                return BARBER_1
+                return FASHION_1
             elif number == 2:
                 question = "Usaha fashion/boutique anda tidak memiliki cabang. Apa keluhan usaha anda?\n\n" \
                    "1. Membutuhkan internet untuk operasional toko\n" \
@@ -510,7 +510,7 @@ async def jenis_fashion_func(update, context):
                    "3. Ingin memiliki metode pembayaran yang universal melalui QRIS generator\n" \
                    "4. Membutuhkan sistem kasir yang  dapat mengakomodir hingga ke barcode"
                 await update.message.reply_text(question)
-                return BARBER_2
+                return FASHION_2
         else:
             await update.message.reply_text("Tidak ada pilihan pada nomor tersebut.")
             return JENIS_FASHION
